@@ -1,73 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogActions from '@mui/material/DialogActions';
-
-function Header() {
-  return (
-    <header>
-      <h1>welcome</h1>
-    </header>
-  );
-}
-
-function Nav() {
-  return (
-    <nav>
-      <ol>
-        <li>html</li>
-        <li>css</li>
-      </ol>
-    </nav>
-  );
-}
-
-function Article() {
-  const [open ,setOpen] = useState(false);
-  return (
-    <article>
-      <h2>Welcome</h2>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      <br />
-      <br />
-      <ButtonGroup>
-        <Button variant="outlined" onClick={()=> {setOpen(true)}}>Create</Button>
-        <Button variant="outlined">Update</Button>
-      </ButtonGroup>
-      <Button variant="outlined">Delete</Button>
-      <Dialog open={open}>
-        <DialogTitle>Create</DialogTitle>
-        <DialogContent>
-          <DialogContentText>Hello create!!</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button variant="outlined">Create</Button>
-          <Button variant="outlined" onClick={()=>{setOpen(false);}}>Cancel</Button>
-        </DialogActions>
-      </Dialog>
-    </article>
-  );
-}
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 export default function App() {
   return (
-    <Container>
-      <Header></Header>
-      <Grid container>
-        <Grid item xs="2">
-          <Nav></Nav>
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, backgroundColor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <TextField
+          margin="normal"
+          label="Email Address"
+          required
+          fullWidth
+          name="email"
+          autoComplete="email"
+        />
+        <TextField
+          margin="normal"
+          label="Password"
+          type="password"
+          required
+          fullWidth
+          name="password"
+          autoComplete="current-password"
+        />
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Sign in
+        </Button>
+        <Grid container>
+          <Grid item xs>
+            <Link>Forgot password?</Link>
+          </Grid>
+          <Grid item>
+            <Link>Don't have an account? Sign Up</Link>
+          </Grid>
         </Grid>
-        <Grid item xs="10">
-          <Article></Article>
-        </Grid>
-      </Grid>
+      </Box>
     </Container>
   );
 }
